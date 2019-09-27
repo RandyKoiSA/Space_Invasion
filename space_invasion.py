@@ -1,5 +1,4 @@
 import pygame
-from pygame.locals import *
 import hub
 
 
@@ -12,7 +11,6 @@ def run_game():
     # Set up the window
     game_hub = hub.Hub()
     pygame.display.set_caption("Space Invasion by Randy Le 2019")
-
 
     while True:
         """ Game loop, as long as this true the game will run. """

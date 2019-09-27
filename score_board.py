@@ -2,6 +2,7 @@ import pygame.ftfont
 from ship import Ship
 from pygame.sprite import Group
 
+
 class ScoreBoard:
     """ A class to report scoring information """
 

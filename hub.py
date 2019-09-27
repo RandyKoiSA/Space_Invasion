@@ -2,6 +2,7 @@ import pygame
 from screens.game_screen import GameScreen
 from gamemode import GameMode
 
+
 class Hub:
     """ HUB class, provide a central place to hold all the properties that are constantly being accessed """
     def __init__(self):

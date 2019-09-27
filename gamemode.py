@@ -1,6 +1,4 @@
-
-
-class GameMode():
+class GameMode:
     """ Tracks statistics and the win / lose condition """
     def __init__(self, hub):
         """ Initializing default values """

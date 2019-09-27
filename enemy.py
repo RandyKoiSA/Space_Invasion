@@ -6,6 +6,7 @@ class Enemy(Sprite):
     """ Enemy class, the alien of the game """
 
     def __init__(self, hub):
+        """ Initialize Default values"""
         super().__init__()
         self.game_hub = hub
         self.game_mode = self.game_hub.game_mode
@@ -20,6 +21,7 @@ class Enemy(Sprite):
         self.movingDown = False
 
     def update(self):
+        """ Update the logic of enemy"""
         if self.movingRight:
             self.rect.x += self.velocity
         else:
@@ -28,9 +30,11 @@ class Enemy(Sprite):
         self.check_boundaries()
 
     def draw(self):
+        """ Draw the enemy onto the screen """
         self.game_hub.main_screen.blit(self.image, self.rect)
 
     def check_boundaries(self):
+        """ Check if the enemy hit the border of the screen """
         if self.rect.left < 0 or self.rect.right > self.game_hub.WINDOW_WIDTH:
             self.movingDown = True
             self.movingRight = not self.movingRight
