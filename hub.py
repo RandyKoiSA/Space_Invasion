@@ -13,6 +13,9 @@ class Hub:
         self.main_screen = pygame.display.set_mode((self.WINDOW_WIDTH, self.WINDOW_HEIGHT))
         self.game_mode = GameMode(self)
 
+        self.shoot_sound = pygame.mixer.Sound('wav/Laser.wav')
+        self.enemy_dies_sound = pygame.mixer.Sound('wav/Enemy_Dies.wav')
+
         self.controller = {
             'up': False,
             'down': False,

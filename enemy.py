@@ -17,6 +17,7 @@ class Enemy(Sprite):
 
         self.movingRight = True
         self.velocity = self.game_mode.ship_speed_factor
+        self.movingDown = False
 
     def update(self):
         if self.movingRight:
@@ -31,5 +32,6 @@ class Enemy(Sprite):
 
     def check_boundaries(self):
         if self.rect.left < 0 or self.rect.right > self.game_hub.WINDOW_WIDTH:
+            self.movingDown = True
             self.movingRight = not self.movingRight
             self.rect.y += 50

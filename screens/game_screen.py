@@ -90,6 +90,7 @@ class GameScreen:
     def add_bullet(self):
         new_bullet = Bullet(self.game_hub, self.player_ship)
         self.bullets.add(new_bullet)
+        self.game_hub.shoot_sound.play()
 
     def update_bullets(self):
         for bullet in self.bullets:
@@ -112,14 +113,23 @@ class GameScreen:
                 self.enemies.add(new_enemy)
 
     def update_enemies(self):
+        # Loop through all the enemies in the list
+        enemy_moved_down = False
+
+        # Update the enemy
         for enemy in self.enemies:
+            # Update the enemy
             enemy.update()
 
+            # Check if the enemy has hit the bottom of the screen.
             if enemy.rect.top > self.game_hub.WINDOW_HEIGHT:
                 self.enemies.remove(enemy)
                 print(len(self.enemies))
+
+            # Check if the enemy collided with the player
             if pygame.sprite.spritecollideany(self.player_ship, self.enemies):
                 self.ship_hit()
+                self.game_hub.enemy_dies_sound.play()
 
     def draw_enemies(self):
         for enemy in self.enemies:
@@ -127,6 +137,7 @@ class GameScreen:
 
     def update_collision(self):
         collisions = pygame.sprite.groupcollide(self.bullets, self.enemies, True, True)
+        # No more enemies on the screen, increase level
         if len(self.enemies) <= 0:
             self.bullets.empty()
             self.game_hub.game_mode.increase_speed()
@@ -137,6 +148,7 @@ class GameScreen:
             for enemies in collisions.values():
                 self.game_hub.game_mode.score += self.game_hub.game_mode.enemy_point_value * len(enemies)
                 self.sb.prep_score()
+                self.game_hub.enemy_dies_sound.play()
             self.check_high_score()
 
     def ship_hit(self):
